@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工业营销AI系统 - 增强版原型</title>
+    <style>
+        /* 基础样式保持不变... */
+        .upload-area {
+            margin: 15px 0;
+            padding: 15px;
+            border: 2px dashed #1e3a8a;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .chat-container {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+        }
+        .chat-message {
+            margin: 5px;
+            padding: 8px 12px;
+            border-radius: 15px;
+            max-width: 70%;
+        }
+        .user-message {
+            background: #e3f2fd;
+            margin-left: auto;
+        }
+        .bot-message {
+            background: #f1f1f1;
+            margin-right: auto;
+        }
+        #userInput {
+            width: calc(100% - 70px);
+            padding: 8px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>工业营销AI系统 - 增强版</h1>
+        <p>支持文件分析和智能对话的全流程解决方案</p>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>核心工作流程</h2>
+            <div class="workflow">
+                <!-- 战略洞察模块增强 -->
+                <div class="step">
+                    <h3>1. 战略洞察</h3>
+                    <div class="upload-area">
+                        <input type="file" id="marketData" accept=".csv,.xlsx,.json">
+                        <p>上传市场数据文件</p>
+                        <button onclick="analyzeMarketData()">分析数据</button>
+                    </div>
+                    <div class="chat-container" id="strategyChat">
+                        <div class="bot-message chat-message">您好，请上传市场数据文件或直接提问</div>
+                    </div>
+                    <input type="text" id="strategyQuestion" placeholder="输入您的问题...">
+                    <button onclick="askStrategyQuestion()">提问</button>
+                </div>
+
+                <!-- 策略制定模块增强 -->
+                <div class="step">
+                    <h3>2. 策略制定</h3>
+                    <div class="upload-area">
+                        <input type="file" id="clientProfile" accept=".pdf,.docx">
+                        <p>上传客户档案</p>
+                        <button onclick="generateStrategy()">生成策略</button>
+                    </div>
+                    <div class="chat-container" id="planningChat">
+                        <div class="bot-message chat-message">我可以帮助制定营销策略</div>
+                    </div>
+                    <input type="text" id="planningQuestion" placeholder="例如：如何定价？">
+                    <button onclick="askPlanningQuestion()">咨询</button>
+                </div>
+
+                <!-- 其他模块保持类似结构... -->
+            </div>
+        </section>
+
+        <section class="demo-area">
+            <h2>全流程控制台</h2>
+            <div>
+                <button onclick="runFullWorkflow()">模拟完整流程</button>
+                <div class="chat-container" id="mainChat">
+                    <div class="bot-message chat-message">系统就绪，可以开始工作</div>
+                </div>
+                <input type="text" id="mainInput" placeholder="输入全局指令...">
+                <button onclick="sendMainCommand()">执行</button>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // 文件分析模拟函数
+        function analyzeMarketData() {
+            const fileInput = document.getElementById('marketData');
+            if (fileInput.files.length > 0) {
+                addChatMessage('strategyChat', '系统', `正在分析文件: ${fileInput.files[0].name}...`);
+                setTimeout(() => {
+                    addChatMessage('strategyChat', '系统', '分析完成：发现3个高潜力市场机会');
+                }, 1500);
+            }
+        }
+
+        // 聊天功能
+        function addChatMessage(containerId, sender, message) {
+            const container = document.getElementById(containerId);
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `chat-message ${sender === '用户' ? 'user-message' : 'bot-message'}`;
+            msgDiv.textContent = `${sender}: ${message}`;
+            container.appendChild(msgDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        // 各模块提问函数
+        function askStrategyQuestion() {
+            const question = document.getElementById('strategyQuestion').value;
+            if (question) {
+                addChatMessage('strategyChat', '用户', question);
+                setTimeout(() => {
+                    addChatMessage('strategyChat', 'AI', `关于"${question}"：建议关注华东地区制造业升级趋势`);
+                }, 800);
+            }
+        }
+
+        // 其他交互函数...
+    </script>
+</body>
+</html>
