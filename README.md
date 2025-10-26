@@ -8,3 +8,4 @@
 
 完整版本请参考飞书知识库
 https://vcnmzoqw48qx.feishu.cn/wiki/C96PwhhQGi7QoKkQ1oNcPKPfnnG?from=from_copylink
+<img width="2730" height="1535" alt="项目封面" src="https://github.com/user-attachments/assets/0c990a11-5491-494e-9e4e-e658940efd29" />
